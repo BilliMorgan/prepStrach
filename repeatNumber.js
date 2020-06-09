@@ -1,10 +1,10 @@
 const repeatNumbers = function (data) {
-  let str = "";
+  let str = [];
   for (arr of data) {
    let string = arr[0].toString().repeat(arr[1]);
-    console.log(str.join(string))
+    str.push(string)
   }
-  return str;
+  return str.join(", ");
 };
 
 console.log(repeatNumbers([[1, 10]]));
