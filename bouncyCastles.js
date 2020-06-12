@@ -20,22 +20,20 @@ const prismVolume = function (height, width, depth) {
 console.log(prismVolume(3, 4, 5) === 60);
 
 const totalVolume = function (solids) {
-  let volumes = [];
-  let total;
+
+  let total = 0;
   for (let figure of solids) {
     if (figure.type === "sphere") {
-      volumes.push(sphereVolume(figure.radius));
+      total += (sphereVolume(figure.radius));
     }
     if (figure.type === "cone") {
-      volumes.push(coneVolume(figure.radius, figure.height));
+      total += (coneVolume(figure.radius, figure.height));
     }
     if (figure.type === "prism") {
-      volumes.push(prismVolume(figure.height, figure.width, figure.depth));
+      total += (prismVolume(figure.height, figure.width, figure.depth));
     }
   }
-  return (total = volumes.reduce(function (a, b) {
-    return a + b;
-  }, 0));
+  return total;
 };
 
 const largeSphere = {
