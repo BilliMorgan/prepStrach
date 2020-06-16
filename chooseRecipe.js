@@ -1,16 +1,27 @@
-const ingredientCheck = function(bakeryA, recipes){
-  console.log(bakeryA)
-  for (let i = 0; i <= bakeryA.length; i++){
-    if(bakeryA[i] === recipes.ingredients[i]){
-      console.log(recipes.name)
+const chooseRecipe = function (bakeryA, bakeryB, recipes) {
+  for (nameFirst of ingredientCheck(bakeryA, recipes)) {
+    for (nameSecond of ingredientCheck(bakeryB, recipes)) {
+      if (nameFirst === nameSecond) {
+        return nameSecond;
+      }
     }
   }
 };
-const chooseRecipe = function (bakeryA, bakeryB, recipes) {
+
+const ingredientCheck = function (bakery, recipes) {
+  let recipeName = [];
+  for (let i = 0; i < bakery.length; i++) {
+    for (let y = 0; y < recipes.length; y++) {
+      if (
+        bakery[i] === recipes[y].ingredients[0] ||
+        bakery[i] === recipes[y].ingredients[1]
+      ) {
+        recipeName.push(recipes[y].name);
+      }
+    }
+  }
+  return recipeName;
 };
-
-
-
 
 let bakeryA = ["saffron", "eggs", "tomato paste", "coconut", "custard"];
 let bakeryB = ["milk", "butter", "cream cheese"];
