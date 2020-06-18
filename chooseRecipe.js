@@ -2,7 +2,7 @@ const chooseRecipe = function (bakeryA, bakeryB, recipes) {
   let recipeName = "";
   for (recipe of recipes) {
     let ingredients = recipe.ingredients;
-    console.log(ingredients);
+    
     let ingrBakeryA =
       bakeryA.includes(ingredients[0]) || bakeryA.includes(ingredients[1]);
     let ingrBakeryB =

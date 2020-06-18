@@ -1,8 +1,18 @@
 const organizeInstructors = function (instructors) {
-
-
-  
+  let outputObject = {};
+  for (record of instructors) {
+    let courseName = record.course;
+    
+    if (courseName in outputObject) {
+      outputObject[courseName].push(record.name)
+      
+    } else {
+      outputObject[courseName] = [record.name];
+    }
+  }
+  return outputObject;
 };
+
 
 console.log(
   organizeInstructors([
