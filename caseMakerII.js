@@ -71,25 +71,43 @@ const lower = (input) => {
 
 const makeCase = function (input, cases) {
   let modifyInput = input;
-  let obj = {
+  let firstPriorityStyle = {
     camel: camelCase,
     pascal: pascalCase,
     snake: snakeCase,
     kebab: kebabCase,
     title: titleCase,
+  };
+  let secondPriorityStyle = {
     vowel: vowelCase,
     consonant: consonantCase,
-    upper: upper,
-    lower: lower
   };
-  if (Array.isArray(cases)){
+  let thirdPriorityStyle = {
+    upper: upper,
+    lower: lower,
+  };
+
+  if (Array.isArray(cases)) {
     for (style of cases) {
-      modifyInput = obj[style](modifyInput);
+      if (firstPriorityStyle[style]) {
+        modifyInput = firstPriorityStyle[style](modifyInput);
+      }
+      if (secondPriorityStyle[style]) {
+        modifyInput = secondPriorityStyle[style](modifyInput);
+      }
+      if(thirdPriorityStyle[style]){
+        modifyInput = thirdPriorityStyle[style](modifyInput)
+      }
     }
     return modifyInput;
-  } 
-  else {
-    return modifyInput = obj[cases](modifyInput);
+  } else {
+    let generalStyle = Object.assign(
+      {},
+      firstPriorityStyle,
+      secondPriorityStyle,
+      thirdPriorityStyle
+    );
+    return (modifyInput = generalStyle[cases](modifyInput));
   }
 };
 
