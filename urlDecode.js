@@ -5,8 +5,7 @@ const urlDecode = function (text) {
   for (word of newInput) {
     outputObject[word.split("=")[0]] = word
       .split("=")[1]
-      .split("%20")
-      .join(" ");
+      .replace(/%20/g, " ")
   }
 
   return outputObject;
