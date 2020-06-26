@@ -1,28 +1,3 @@
-const makeCase = function (input, cases) {
-  if (cases === "camel") {
-    return camelCase(input);
-  }
-
-  if (cases === "pascal") {
-    return pascalCase(input);
-  }
-
-  if (cases === "snake") {
-    return snakeCase(input);
-  }
-
-  if (cases === "kebab") {
-    return kebabCase(input);
-  }
-
-  if (cases === "title") {
-    return titleCase(input);
-  }
-  if (cases === "vowel") {
-    return vowelCase(input);
-  }
-};
-
 const camelCase = (input) => {
   return input
     .split(" ")
@@ -62,20 +37,60 @@ const titleCase = (input) => {
 };
 
 const vowelCase = (input) => {
-  return input
-    .split(" ")
-    .map((word) => {
-      word
-        .split("")
-        .forEach((element) => {
-          let vowels = ["a", "i", "u", "o", "e"];
-          if (vowels.includes(element)) {
-            return element.toUpperCase();
-          }
-        })
-        
-    })
-    .join(" ");
+  let output = "";
+  let vowels = ["a", "i", "u", "o", "e"];
+  for (letter of input) {
+    if (vowels.includes(letter)) {
+      output += letter.toUpperCase();
+    } else {
+      output += letter;
+    }
+  }
+  return output;
+};
+
+const consonantCase = (input) => {
+  let output = "";
+  let vowels = ["a", "i", "u", "o", "e"];
+  for (letter of input) {
+    if (vowels.includes(letter)) {
+      output += letter;
+    } else {
+      output += letter.toUpperCase();
+    }
+  }
+  return output;
+};
+const upper = (input) => {
+  return input.toUpperCase();
+};
+
+const lower = (input) => {
+  return input.toLowerCase();
+};
+
+const makeCase = function (input, cases) {
+  let modifyInput = input;
+  let obj = {
+    camel: camelCase,
+    pascal: pascalCase,
+    snake: snakeCase,
+    kebab: kebabCase,
+    title: titleCase,
+    vowel: vowelCase,
+    consonant: consonantCase,
+    upper: upper,
+    lower: lower
+  };
+  if (Array.isArray(cases)){
+    for (style of cases) {
+      modifyInput = obj[style](modifyInput);
+    }
+    return modifyInput;
+  } 
+  else {
+    return modifyInput = obj[cases](modifyInput);
+  }
 };
 
 console.log(makeCase("this is a string", "camel"));
