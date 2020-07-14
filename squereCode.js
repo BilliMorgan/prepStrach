@@ -4,24 +4,29 @@ const squareCode = function (message) {
   let counter = 0;
   let newArray = [];
   let generalArray = [];
+  let outputString = {}
 
-  //console.log(squareRoot)
-  //console.log(splitMessage)
   for (let letter of splitMessage){
-    if (counter != squareRoot){
+    if (counter !== squareRoot){
       newArray.push(letter)
       counter += 1
     }
     else if (counter === squareRoot){
       generalArray.push(newArray)
-      counter = 0;
+      counter = 1;
+      newArray = [letter];
     }
-
-
   }
   console.log(generalArray)
-  console.log(counter)
-  return newArray.join("")
+  for (insideLetter of generalArray){
+    for(let i = 0; i < insideLetter.length; i++){
+    
+      console.log(insideLetter[i])
+    }
+
+  }
+  console.log(outputString)
+ 
 };
 
 console.log(squareCode("chill out"));
