@@ -39,7 +39,7 @@ const queenThreat = (generatedBoard) => {
       }
     });
   });
-  //horyzontal and vertycal threat
+  //horizontal and vertical threat
   if (whiteQueen[0] === blackQueen[0] || whiteQueen[1] === blackQueen[2]) {
     return true;
   }
