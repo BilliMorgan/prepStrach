@@ -17,30 +17,39 @@ const generateBoard = (whiteQueen, blackQueen) => {
     }
     board.push(row);
   }
-return board;
+  return board;
 };
 
-
 let generatedBoard = generateBoard(whiteQueen, blackQueen);
-console.log(generatedBoard)
-    const queenThreat = (generatedBoard) => {
-      generatedBoard.forEach(element => {
-        let threat = 0;
-        element.forEach(queen => {
-          if (queen === 1){
-            threat + 1
-          }}
-          )
-          console.log(threat)
-        
-      });
-
-
-
-    }
-
-
-
-
-console.log(generatedBoard);
+// queens coordinates:
+const queenThreat = (generatedBoard) => {
+  let whiteQueen = [];
+  let blackQueen = [];
+  
+  generatedBoard.forEach((board, ind) => {
+    board.forEach((row, index) => {
+      if (!whiteQueen.length) {
+        if (row === 1) {
+          whiteQueen.push(ind, index);
+        }
+      } else {
+        if (row === 1) {
+          blackQueen.push(ind, index);
+        }
+      }
+    });
+  });
+  //horyzontal and vertycal threat
+  if (whiteQueen[0] === blackQueen[0] || whiteQueen[1] === blackQueen[2]) {
+    return true;
+  }
+  // diagonal threat
+  if (
+    Math.abs(whiteQueen[0] - blackQueen[0]) == Math.abs(whiteQueen[1] - blackQueen[1])
+  ) {
+    return true;
+  }
+  return false;
+};
+console.log(generatedBoard.join('\n'));
 console.log(queenThreat(generatedBoard));
