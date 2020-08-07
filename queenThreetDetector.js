@@ -1,5 +1,5 @@
-let whiteQueen = [0, 5];
-let blackQueen = [5, 0];
+let whiteQueen = [4, 6];
+let blackQueen = [4, 2];
 
 const generateBoard = (whiteQueen, blackQueen) => {
   let board = [];
@@ -40,7 +40,7 @@ const queenThreat = (generatedBoard) => {
     });
   });
   //horizontal and vertical threat
-  if (whiteQueen[0] === blackQueen[0] || whiteQueen[1] === blackQueen[2]) {
+  if (whiteQueen[0] === blackQueen[0] || whiteQueen[1] === blackQueen[1]) {
     return true;
   }
   // diagonal threat
